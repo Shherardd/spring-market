@@ -1,6 +1,7 @@
 package com.shd.market.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "productos")
@@ -26,7 +27,13 @@ public class Producto {
 
     private Boolean estado;
 
+    @ManyToOne
+    @JoinColumn(name="id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
+
+    // -------------------------------------------------------------- >
     // Getters And Setters (code > generate... > getters and setters)
+    // -------------------------------------------------------------- >
 
     public Integer getIdProducto() {
         return idProducto;
