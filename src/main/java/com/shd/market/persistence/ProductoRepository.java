@@ -7,6 +7,7 @@ import com.shd.market.persistence.entity.Producto;
 import com.shd.market.persistence.mapper.ProductMapper;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,19 +28,25 @@ public class ProductoRepository implements ProductRepository {
         return Optional.of(mapper.toProducts(productos));
     }
 
-    public Optional<List<Producto>> getEscasos(int cantidadStock, boolean estado){
-        return productoCrudRepository.findByCantidadStockLessThanAndEstado(cantidadStock, estado);
+    @Override
+    public Optional<List<Product>> getScarceProducts (int quantity, boolean state) {
+        Optional<List<Producto>> productos = productoCrudRepository.findByCantidadStockLessThanAndEstado(quantity, true);
+        return productos.map(prods -> mapper.toProducts(prods));
     }
 
-    public Optional<Producto> getProducto (int idProducto) {
-        return productoCrudRepository.findById(idProducto);
+    @Override
+    public Optional<Product> getProduct(int productId){
+        return productoCrudRepository.findById(productId).map(prod -> mapper.toProduct(prod));
     }
 
-    public Producto save(Producto producto){
-        return productoCrudRepository.save(producto);
+    @Override
+    public Product save (Product product){
+        Producto producto = mapper.toProducto(product);
+        return mapper.toProduct(productoCrudRepository.save(producto));
     }
 
-    public void deleteProducto(int idProducto){
-        productoCrudRepository.deleteById(idProducto);
+    @Override
+    public void delete(int productId){
+        productoCrudRepository.deleteById(productId);
     }
 }
