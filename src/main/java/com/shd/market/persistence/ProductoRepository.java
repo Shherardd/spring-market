@@ -5,6 +5,7 @@ import com.shd.market.domain.repository.ProductRepository;
 import com.shd.market.persistence.crud.ProductoCrudRepository;
 import com.shd.market.persistence.entity.Producto;
 import com.shd.market.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.swing.text.html.Option;
@@ -13,7 +14,9 @@ import java.util.Optional;
 
 @Repository // Or @Component <-- es una generalizacion de un componente de Spring, pero Repository es mas especifico
 public class ProductoRepository implements ProductRepository {
+    @Autowired
     private ProductoCrudRepository productoCrudRepository;
+    @Autowired
     private ProductMapper mapper;
 
     @Override
