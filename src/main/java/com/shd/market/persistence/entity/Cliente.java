@@ -7,14 +7,13 @@ import java.util.List;
 @Table(name = "clientes")
 public class Cliente {
     @Id
-    @Column(name = "id")
-    private String idCliente;
+    private String id;
 
     private String nombre;
 
     private String apellidos;
 
-    private Integer celular;
+    private Long celular;
 
     private String direccion;
 
@@ -25,12 +24,12 @@ public class Cliente {
     private List<Compra> compras;
 
     // Getters and setters
-    public String getIdCliente() {
-        return idCliente;
+    public String getId() {
+        return id;
     }
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -49,11 +48,11 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public Integer getCelular() {
+    public Long getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(Long celular) {
         this.celular = celular;
     }
 
